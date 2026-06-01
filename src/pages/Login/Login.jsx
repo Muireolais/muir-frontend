@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "../styles/Login.module.css";
+import login from "../../API/post/login";
+import styles from "../../styles/Login.module.css";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -38,27 +39,15 @@ const Login = () => {
     setStep("login");
   };
 
-  const handleLoginContinue = () => {
-    if (selectedPortal === "crew") {
-      const isValid =
-        formData.fullName.trim().toLowerCase() === "johndoe" &&
-        formData.password === "123";
+  const handleLoginContinue = async () => {
+    const token = await login({
+      loginType: selectedPortal,
+      formData,
+    });
 
-      if (!isValid) {
-        setError(true);
-        return;
-      }
-    }
-
-    if (selectedPortal === "company") {
-      const isValid =
-        formData.email.trim().toLowerCase() === "maersk@muireolais.com" &&
-        formData.code === "123";
-
-      if (!isValid) {
-        setError(true);
-        return;
-      }
+    if (!token) {
+      setError(true);
+      return;
     }
 
     setError(false);

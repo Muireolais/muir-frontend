@@ -1,0 +1,142 @@
+{
+  "vessels": [
+    {
+      "image": "/vessels/ahtv/image.jpg",
+      "alt": "Anchor Handling Tug Vessel",
+      "title": "Anchor Handling Tug Vessel",
+      "description": "Specialized offshore vessel designed for towing, anchor handling, and supporting drilling operations in demanding marine environments.",
+      "info": [
+        [
+          "/vessels/ahtv/icon1.png",
+          "Anchor Operations",
+          "Deploys, retrieves, and repositions anchors for offshore rigs and floating installations."
+        ],
+        [
+          "/vessels/ahtv/icon2.png",
+          "Towing Capacity",
+          "Provides powerful towing capabilities for offshore structures and marine equipment."
+        ],
+        [
+          "/vessels/ahtv/icon3.png",
+          "Crew Capacity",
+          "Accommodates up to 25 crew members for continuous offshore operations."
+        ]
+      ]
+    },
+    {
+      "image": "/vessels/seu/image.jpg",
+      "alt": "Self Elevating Unit",
+      "title": "Self Elevating Unit",
+      "description": "Jack-up platform capable of elevating above sea level, providing a stable working environment for offshore construction and maintenance.",
+      "info": [
+        [
+          "/vessels/seu/icon1.png",
+          "Elevating System",
+          "Raises the platform above the water surface to ensure safe and stable operations."
+        ],
+        [
+          "/vessels/seu/icon2.png",
+          "Offshore Construction",
+          "Supports drilling, maintenance, and installation projects in shallow waters."
+        ],
+        [
+          "/vessels/seu/icon3.png",
+          "Crew Capacity",
+          "Designed to accommodate up to 60 personnel onboard."
+        ]
+      ]
+    },
+    {
+      "image": "/vessels/osv/image.jpg",
+      "alt": "Offshore Supply Vessel",
+      "title": "Offshore Supply Vessel",
+      "description": "Versatile vessel used to transport cargo, equipment, fuel, and supplies to offshore platforms and installations.",
+      "info": [
+        [
+          "/vessels/osv/icon1.png",
+          "Cargo Transport",
+          "Delivers essential materials and equipment to offshore facilities."
+        ],
+        [
+          "/vessels/osv/icon2.png",
+          "Fuel & Water Supply",
+          "Supports offshore operations through reliable transportation of fuel and fresh water."
+        ],
+        [
+          "/vessels/osv/icon3.png",
+          "Crew Capacity",
+          "Provides accommodation for up to 30 crew members."
+        ]
+      ]
+    },
+    {
+      "image": "/vessels/dsv/image.jpg",
+      "alt": "Diving Support Vessel",
+      "title": "Diving Support Vessel",
+      "description": "Purpose-built vessel equipped to support underwater inspection, maintenance, repair, and construction activities.",
+      "info": [
+        [
+          "/vessels/dsv/icon1.png",
+          "Diving Operations",
+          "Supports saturation and air diving missions in offshore environments."
+        ],
+        [
+          "/vessels/dsv/icon2.png",
+          "ROV Support",
+          "Operates remotely operated vehicles for subsea inspection and intervention."
+        ],
+        [
+          "/vessels/dsv/icon3.png",
+          "Crew Capacity",
+          "Accommodates up to 40 specialists and crew members."
+        ]
+      ]
+    },
+    {
+      "image": "/vessels/multicat/image.jpg",
+      "alt": "Multicat",
+      "title": "Multicat",
+      "description": "Compact multi-purpose workboat used for towing, dredging support, anchor handling, and marine construction projects.",
+      "info": [
+        [
+          "/vessels/multicat/icon1.png",
+          "Multi-Purpose Design",
+          "Suitable for a wide range of offshore and coastal support tasks."
+        ],
+        [
+          "/vessels/multicat/icon2.png",
+          "Construction Support",
+          "Assists dredging, cable laying, and marine infrastructure projects."
+        ],
+        [
+          "/vessels/multicat/icon3.png",
+          "Crew Capacity",
+          "Operates efficiently with up to 12 crew members."
+        ]
+      ]
+    },
+    {
+      "image": "/vessels/pipelayer/image.jpg",
+      "alt": "Pipe Layer",
+      "title": "Pipe Layer",
+      "description": "Heavy-duty offshore construction vessel dedicated to subsea pipeline installation for oil, gas, and renewable energy projects.",
+      "info": [
+        [
+          "/vessels/pipelayer/icon1.png",
+          "Pipeline Installation",
+          "Installs subsea pipelines with high precision in offshore environments."
+        ],
+        [
+          "/vessels/pipelayer/icon2.png",
+          "Heavy Lift Capability",
+          "Handles large construction modules and offshore infrastructure components."
+        ],
+        [
+          "/vessels/pipelayer/icon3.png",
+          "Crew Capacity",
+          "Provides accommodation for up to 150 personnel."
+        ]
+      ]
+    }
+  ]
+}

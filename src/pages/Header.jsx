@@ -16,7 +16,7 @@ const Header = ({links}) => {
     <header>
       <div className="container">
         <a href="/">
-          <img alt="muir" style={{width: "125px", height: "40px"}} src="/images/Logo.svg"></img>
+          <img alt="muir" style={{height: "50px"}} src="/images/Logo.svg"></img>
         </a>
         <NavBar links={routes} />
 

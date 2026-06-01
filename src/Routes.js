@@ -8,12 +8,11 @@ import HomePage from "./pages/Home";
 // import NewsPage from "./pages/NewsPage";
 // import ContactsPage from "./pages/ContactsPage";
 import NotFoundPage from "./pages/NotFound";
-import CaptainMainPage from "./pages/MasterMain";
 import CaptainAdd from "./pages/MasterAdd";
 import CoursesPage from "./pages/Courses";
 
 // Импорт Login page from "./pages/Login";
-import Login from "./pages/Login";
+import Login from "./pages/Login/Login";
 import LoginLayout from "./layouts/LoginLayout";
 import Crew from "./pages/Login/Crew";
 import Company from "./pages/Login/Company";
@@ -35,6 +34,7 @@ import CompanyPageVessels from "./pages/CompanyPageVessels";
 import CompanyDashboard from "./pages/CompanyDashboard";
 import CompanyPageSubscription from "./pages/CompanyPageSubscription";
 import CompanyLayout from "./layouts/CompanyLayout";
+import CompanyAddVessel from "./pages/CompanyAddVessel";
 
 const links = {
   landing: "/",
@@ -65,7 +65,7 @@ const router = createBrowserRouter([
       /*</ProtectedRoute>*/
     ),
     children: [
-      { index: true, element: <CaptainMainPage links={links} /> },
+      { index: true, element: <MasterMain links={links} /> },
       { path: "add", element: <CaptainAdd links={links} /> },
     ],
   },
@@ -100,6 +100,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: "" },
       { path: "vessels", element: <CompanyPageVessels /> },
+      { path: "vessels/add", element: <CompanyAddVessel /> },
       { path: "dashboard", element: <CompanyDashboard /> },
       { path: "subscription", element: <CompanyPageSubscription /> },
     ],
