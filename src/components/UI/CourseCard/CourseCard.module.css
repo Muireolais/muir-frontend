@@ -19,7 +19,7 @@
 
 .image {
   position: relative;
-  height: 156px;
+  height: 220px;
   background:
     linear-gradient(180deg, rgba(10, 25, 60, 0.06), rgba(10, 25, 60, 0.5)),
     url("../../../../public/images/course_avatar(325x220).png") center/cover no-repeat;

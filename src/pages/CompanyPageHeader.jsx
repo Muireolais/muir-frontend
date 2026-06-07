@@ -28,7 +28,7 @@ const CompanyPageHeader = () => {
           <span className={styles.avatarCircle}>M</span>
 
           <span className={styles.profileMeta}>
-            <span className={styles.profileName}>Muireolais Admin</span>
+            <span className={styles.profileName}>Dixstone</span>
             <span className={styles.profileRole}>Company account</span>
           </span>
         </button>

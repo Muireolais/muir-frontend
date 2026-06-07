@@ -1,11 +1,11 @@
 import { Outlet } from "react-router-dom";
-import CaptainHeader from "../pages/MasterHeader";
+import Header from "../pages/Header";
 
-const CaptainLayout = ({links}) => {
+const CaptainLayout = () => {
   return (
     <>
-      <CaptainHeader links={links} />
-      <Outlet /> {/* This renders the nested route content */}
+      <Header />
+      <Outlet />
     </>
   );
 };

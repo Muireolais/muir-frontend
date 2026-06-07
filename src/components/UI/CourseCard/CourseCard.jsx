@@ -1,5 +1,5 @@
 import styles from "./CourseCard.module.css";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const CourseCard = ({ course }) => {
   const navigate = useNavigate();
@@ -29,7 +29,16 @@ const CourseCard = ({ course }) => {
 
   return (
     <article className={styles.card}>
-      <div className={styles.image}>
+      <div
+        className={styles.image}
+        style={
+          course.image
+            ? {
+                backgroundImage: `linear-gradient(180deg, rgba(10, 25, 60, 0.06), rgba(10, 25, 60, 0.5)), url(${course.image})`,
+              }
+            : undefined
+        }
+      >
         <span className={styles.category}>{course.category}</span>
         <span className={`${styles.status} ${getStatusClass()}`}>
           {course.status === "Completed" ? "✔ Completed" : course.status}

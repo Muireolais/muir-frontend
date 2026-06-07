@@ -1,28 +1,47 @@
-import { useNavigate } from "react-router-dom";
-import Button from "../components/UI/Button/Button";
-import Search from "../components/UI/Search/Search";
-import NavBar from "../components/UI/NavBar/NavBar";
+import { NavLink, useNavigate } from "react-router-dom";
+import styles from "../styles/Header.module.css";
 
-const Header = ({links}) => {
-
+const Header = () => {
   const navigate = useNavigate();
+
   const routes = [
     { path: "/", label: "Home" },
-    { path: "/", label: "News" },
-    { path: "/", label: "Contacts" },
+    { path: "/news", label: "News" },
+    { path: "/about", label: "About Us" },
+    { path: "/contacts", label: "Contact" },
   ];
 
   return (
-    <header>
-      <div className="container">
-        <a href="/">
-          <img alt="muir" style={{width: "125px", height: "40px"}} src="/images/Logo.svg"></img>
+    <header className={styles.header}>
+      <div className={styles.container}>
+        <a href="/" className={styles.logo}>
+          <img src="/images/Logo.svg" alt="MuirEolais" />
         </a>
-        <NavBar links={routes} />
 
-        <Search name="search" type="text" placeholder="Search"/>
+        <nav className={styles.nav}>
+          {routes.map((route) => (
+            <NavLink
+              key={route.label}
+              to={route.path}
+              className={({ isActive }) =>
+                isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
+              }
+            >
+              {route.label}
+            </NavLink>
+          ))}
+        </nav>
 
-        <Button name="login" onClick={() => navigate("/login")}>Log in</Button>
+        <div className={styles.right}>
+          <div className={styles.search}>
+            <input type="text" placeholder="Search platform, certificates..." />
+            <span>⌕</span>
+          </div>
+
+          <button className={styles.loginButton} onClick={() => navigate("/login")}>
+            Log In
+          </button>
+        </div>
       </div>
     </header>
   );

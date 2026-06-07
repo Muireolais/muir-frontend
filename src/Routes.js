@@ -81,16 +81,17 @@ const router = createBrowserRouter([
   },
   
   {
-    path: "profile",
-    element: (
-      // <ProtectedRoute redirect={"/login"} allowedRoles={["crew"]}>
-      <ProfileLayout links={links} />
-      // </ProtectedRoute>
-    ),
-    children: [
-      { index: true, element: <ProfileMain /> },
-      { path: "courses", element: <CoursesPage /> },
-      { path: "crew-management", element: <MasterMain /> },
+  path: "profile",
+  element: (
+    // <ProtectedRoute redirect={"/login"} allowedRoles={["crew"]}>
+    <ProfileLayout links={links} />
+    // </ProtectedRoute>
+  ),
+  children: [
+    { index: true, element: <ProfileMain /> },
+    { path: "crew-management", element: <MasterMain /> },
+    { path: "courses", element: <CoursesPage /> },
+    { path: "courses/:courseSlug", element: <Course /> },
     ],
   },
 
@@ -103,12 +104,6 @@ const router = createBrowserRouter([
       { path: "dashboard", element: <CompanyDashboard /> },
       { path: "subscription", element: <CompanyPageSubscription /> },
     ],
-  },
-
-  {
-    path: "course",
-    element: <CourseLayout />,
-    children: [{ index: true, element: <Course /> }],
   },
 
   {

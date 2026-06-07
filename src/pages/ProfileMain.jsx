@@ -1,5 +1,17 @@
 import styles from "../styles/ProfileMain.module.css";
 
+const profileData = {
+  name: "John",
+  surname: "Doe",
+  rank: "Master",
+  dateOfBirth: "01.01.1970",
+  signOn: "25.10.2025",
+  signOff: "24.02.2026",
+  get Initials() {
+    return (this.name.charAt(0) + this.surname.charAt(0)).toUpperCase();
+  },
+};
+
 const recentlyViewedCourses = [
   {
     title: "Offshore Induction",
@@ -33,13 +45,13 @@ const ProfileMain = () => {
       <section className={styles.heroCard}>
         <div className={styles.profileTop}>
           <div className={styles.avatarWrap}>
-            <div className={styles.avatar}>YB</div>
+            <div className={styles.avatar}>{profileData.Initials}</div>
             <span className={styles.statusBadge}>Active crew</span>
           </div>
 
           <div className={styles.profileInfo}>
             <span className={styles.overline}>Crew Member Profile</span>
-            <h2 className={styles.name}>John Doe</h2>
+            <h2 className={styles.name}>{profileData.name} {profileData.surname}</h2>
             <p className={styles.role}>Master · Offshore assigned training</p>
           </div>
 
@@ -69,32 +81,32 @@ const ProfileMain = () => {
           <div className={styles.infoGrid}>
             <div className={styles.infoItem}>
               <span>Name</span>
-              <b>John</b>
+              <b>{profileData.name}</b>
             </div>
 
             <div className={styles.infoItem}>
               <span>Surname</span>
-              <b>Doe</b>
+              <b>{profileData.surname}</b>
             </div>
 
             <div className={styles.infoItem}>
               <span>Rank</span>
-              <b>Master</b>
+              <b>{profileData.rank}</b>
             </div>
 
             <div className={styles.infoItem}>
               <span>Date of Birth</span>
-              <b>01.01.1970</b>
+              <b>{profileData.dateOfBirth}</b>
             </div>
 
             <div className={styles.infoItem}>
               <span>Sign on</span>
-              <b>25.10.2025</b>
+              <b>{profileData.signOn}</b>
             </div>
 
             <div className={styles.infoItem}>
               <span>Sign off</span>
-              <b>24.02.2026</b>
+              <b>{profileData.signOff}</b>
             </div>
           </div>
         </div>

@@ -1,280 +1,105 @@
 import { useEffect, useMemo, useState } from "react";
 import styles from "../styles/Course.module.css";
+import { useParams, Navigate } from "react-router-dom";
+
+const ALLOWED_COURSE_SLUG = "enclosed_space";
 
 const courseData = {
-  id: "REQ-QHSE102",
-  title: "Offshore Safety Fundamentals",
-  subtitle: "Maritime safety e-learning course",
+  id: "ENC-SPACE101",
+  title: "External pump usage (Dräger X-am Pump)",
+  subtitle: "Enclosed space entry gas sampling lesson",
   language: "English",
-  averageScore: 84,
-  estimatedDuration: "2h 10min",
+  averageScore: 0,
+  estimatedDuration: "5 min",
   modules: [
     {
       id: "module-1",
       number: 1,
-      title: "Fire Safety Procedures",
-      status: "completed",
+      title: "External pump usage (Dräger X-am Pump)",
+      status: "current",
       steps: [
         {
           id: "m1-step-1",
           number: 1,
-          title: "Introduction to Fire Risks Onboard",
+          title: "External pump usage Lesson content",
           type: "reading",
-          duration: "5 min",
-          status: "completed",
+          duration: "<1 min",
+          status: "current",
           description:
-            "Learn the main fire hazards found on vessels and offshore installations, including machinery spaces, electrical systems, and fuel handling areas.",
+            "This lesson covers correct use of the external pump for remote gas sampling before enclosed space entry.",
           content:
-            "Fire is one of the most serious risks at sea. Crew members must understand ignition sources, combustible materials, and correct reporting procedures. Special attention must be paid to engine rooms, electrical cabinets, galley areas, and fuel transfer operations.",
+            "This lesson covers correct use of the external pump for remote gas sampling before enclosed space entry.\n\nCovers:\n\nPre-checks:\nCheck the tubing, filter, tight connections, and pump flow before use. The hose must not be blocked, damaged, leaking, or loosely connected.\n\nSampling:\nUse the external pump to sample the atmosphere remotely before entry. Test the top, middle, and bottom of the enclosed space to get a representative atmosphere reading.\n\nTiming:\nAllow enough time for the sample to travel through the tubing before relying on the reading. As a practical guide, wait approximately 1 second per meter of tubing for a stable reading.\n\nCommon errors:\nCommon mistakes include blocked hose, leaks, rushing the measurement, and failing to sample different levels of the space.\n\nObjective:\nEnsure reliable readings before entry.",
         },
         {
           id: "m1-step-2",
           number: 2,
-          title: "Using Firefighting Equipment",
+          title: "External pump usage video",
           type: "video",
-          duration: "8 min",
-          status: "completed",
+          duration: "2 min",
+          status: "locked",
           description:
-            "Video lesson covering extinguishers, fire hoses, emergency alarms, and safe first response actions.",
-          video:
-            "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+            "Watch the external pump usage demonstration before completing the knowledge check.",
+          video: "https://www.youtube.com/embed/hqHZuXNv_FE",
         },
         {
           id: "m1-step-3",
           number: 3,
-          title: "Fire Safety Quiz",
+          title: "External pump usage quiz",
           type: "quiz",
-          duration: "6 min",
-          status: "completed",
-          description:
-            "Answer questions about onboard fire hazards and correct emergency response.",
-          questions: [
-            {
-              id: "q1",
-              question: "Which area onboard usually presents one of the highest fire risks?",
-              options: [
-                "Engine room",
-                "Sleeping cabin",
-                "Open deck walkway",
-                "Mess hall table",
-              ],
-              correctIndex: 0,
-            },
-            {
-              id: "q2",
-              question: "What is the first action after discovering a fire?",
-              options: [
-                "Hide the source",
-                "Raise the alarm",
-                "Continue work",
-                "Wait for instructions silently",
-              ],
-              correctIndex: 1,
-            },
-            {
-              id: "q3",
-              question: "Fire extinguishers should only be used if it is safe to do so.",
-              options: ["True", "False"],
-              correctIndex: 0,
-            },
-          ],
-        },
-      ],
-    },
-    {
-      id: "module-2",
-      number: 2,
-      title: "Man Overboard Response",
-      status: "current",
-      steps: [
-        {
-          id: "m2-step-1",
-          number: 1,
-          title: "MOB Immediate Actions",
-          type: "reading",
-          duration: "5 min",
-          status: "completed",
-          description:
-            "Understand the first actions to take when a person goes overboard, including shouting, pointing, and notifying the bridge.",
-          content:
-            "When a person goes overboard, every second matters. The nearest crew member should raise the alarm immediately, keep visual contact, point continuously toward the casualty, and inform the bridge or officer on watch without delay.",
-        },
-        {
-          id: "m2-step-2",
-          number: 2,
-          title: "Bridge and Deck Coordination",
-          type: "video",
-          duration: "10 min",
-          status: "current",
-          description:
-            "Training video covering man overboard bridge response, lookout duties, retrieval equipment, and rescue coordination.",
-          video:
-            "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
-        },
-        {
-          id: "m2-step-3",
-          number: 3,
-          title: "MOB Quiz",
-          type: "quiz",
-          duration: "7 min",
+          duration: "2 min",
           status: "locked",
           description:
-            "Test your understanding of man overboard reporting, bridge communication, and rescue priorities.",
+            "Answer questions about correct external pump use before enclosed space entry.",
           questions: [
             {
               id: "q1",
-              question: "What should a crew member do first after seeing someone fall overboard?",
+              question: "Why is an external pump used with a gas detector?",
               options: [
-                "Return to cabin",
-                "Raise the alarm and point at the casualty",
-                "Write a report",
-                "Wait for the captain",
+                "To increase battery life",
+                "To sample atmosphere remotely before entry",
+                "To speed up calibration",
+                "To reduce maintenance",
               ],
               correctIndex: 1,
             },
             {
               id: "q2",
-              question: "Why is continuous visual contact important during a man overboard event?",
+              question: "What must be checked before using the external pump?",
               options: [
-                "To estimate vessel speed",
-                "To prevent losing sight of the casualty",
-                "To check fuel usage",
-                "To calm passengers",
+                "Detector color and casing",
+                "Tubing condition and no blockage in line",
+                "Vessel heading",
+                "Crew PPE color",
               ],
               correctIndex: 1,
             },
             {
               id: "q3",
-              question: "Who should be informed immediately?",
+              question: "How should sampling be carried out with tubing?",
               options: [
-                "The bridge / officer on watch",
-                "The catering team",
-                "The port agent only",
-                "Nobody until shift change",
+                "Take reading immediately",
+                "Wait enough time for sample to travel, approximately 1 second per meter",
+                "Shake the detector",
+                "Increase alarm limits",
               ],
-              correctIndex: 0,
-            },
-            {
-              id: "q4",
-              question: "Recovery actions must follow the vessel’s approved emergency procedures.",
-              options: ["True", "False"],
-              correctIndex: 0,
+              correctIndex: 1,
             },
           ],
         },
         {
-          id: "m2-step-4",
+          id: "m1-step-4",
           number: 4,
-          title: "MOB Result Example",
+          title: "External pump usage result",
           type: "result",
           duration: "—",
           status: "locked",
           result: {
             passed: false,
-            score: 75,
+            score: 0,
             required: 80,
-            timeSpent: "00:08:21",
-            attemptsLeft: "2",
+            timeSpent: "00:05:00",
+            attemptsUsed: 0,
           },
-        },
-      ],
-    },
-    {
-      id: "module-3",
-      number: 3,
-      title: "PPE and Safe Conduct",
-      status: "locked",
-      steps: [
-        {
-          id: "m3-step-1",
-          number: 1,
-          title: "Required PPE Onboard",
-          type: "reading",
-          duration: "6 min",
-          status: "locked",
-          description:
-            "Learn when helmets, gloves, eye protection, hearing protection, and lifejackets are required.",
-          content:
-            "Personal protective equipment must be selected based on the task, area, and hazard involved. Standard PPE may include helmet, safety footwear, eye protection, hearing protection, gloves, and high-visibility clothing. Additional equipment may be required depending on vessel operations.",
-        },
-        {
-          id: "m3-step-2",
-          number: 2,
-          title: "Deck Safety and Restricted Areas",
-          type: "video",
-          duration: "9 min",
-          status: "locked",
-          description:
-            "Video lesson about safe movement onboard, hazard zones, permits, and restricted access areas.",
-          video:
-            "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
-        },
-        {
-          id: "m3-step-3",
-          number: 3,
-          title: "PPE Quiz",
-          type: "quiz",
-          duration: "6 min",
-          status: "locked",
-          description:
-            "Answer questions about PPE requirements and safe behaviour in operational spaces.",
-          questions: [
-            {
-              id: "q1",
-              question: "Which of the following is an example of PPE?",
-              options: [
-                "Safety helmet",
-                "Fuel valve",
-                "Navigation chart",
-                "Bridge window",
-              ],
-              correctIndex: 0,
-            },
-            {
-              id: "q2",
-              question: "Should restricted areas be entered without authorization?",
-              options: ["Yes", "No"],
-              correctIndex: 1,
-            },
-            {
-              id: "q3",
-              question: "PPE should be checked before use for damage or defects.",
-              options: ["True", "False"],
-              correctIndex: 0,
-            },
-          ],
-        },
-      ],
-    },
-    {
-      id: "module-4",
-      number: 4,
-      title: "Emergency Communication",
-      status: "locked",
-      steps: [
-        {
-          id: "m4-step-1",
-          number: 1,
-          title: "Emergency Reporting Chain",
-          type: "reading",
-          duration: "5 min",
-          status: "locked",
-          description:
-            "Understand who to report to, what details to provide, and how to communicate clearly during emergency situations.",
-          content:
-            "Emergency communication must be clear, direct, and immediate. A crew member should report the type of incident, exact location, persons involved, and whether immediate assistance is required. Miscommunication can delay response and increase risk.",
-        },
-        {
-          id: "m4-step-2",
-          number: 2,
-          title: "Radio and Alarm Procedures",
-          type: "video",
-          duration: "11 min",
-          status: "locked",
-          description:
-            "Watch procedures for alarms, internal communication, radio use, and emergency announcements.",
-          video:
-            "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
         },
       ],
     },
@@ -282,10 +107,15 @@ const courseData = {
 };
 
 const Course = () => {
+  const { courseSlug } = useParams();
+  const isAllowedCourse = courseSlug === ALLOWED_COURSE_SLUG;
+
   const [modules, setModules] = useState(courseData.modules);
-  const [currentModuleId, setCurrentModuleId] = useState("module-2");
-  const [currentStepId, setCurrentStepId] = useState("m2-step-2");
+  const [currentModuleId, setCurrentModuleId] = useState("module-1");
+  const [currentStepId, setCurrentStepId] = useState("m1-step-1");
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [selectedAnswers, setSelectedAnswers] = useState({});
+  const [attemptsUsed, setAttemptsUsed] = useState(0);
 
   const currentModule =
     modules.find((module) => module.id === currentModuleId) || modules[0];
@@ -295,16 +125,22 @@ const Course = () => {
     currentModule.steps[0];
 
   const currentModuleIndex = modules.findIndex((m) => m.id === currentModule.id);
+
   const currentStepIndex = currentModule.steps.findIndex(
     (s) => s.id === currentStep.id
   );
 
-  const totalSteps = modules.reduce((sum, module) => sum + module.steps.length, 0);
+  const totalSteps = modules.reduce(
+    (sum, module) => sum + module.steps.length,
+    0
+  );
+
   const completedSteps = modules.reduce(
     (sum, module) =>
       sum + module.steps.filter((step) => step.status === "completed").length,
     0
   );
+
   const progressPercent = Math.round((completedSteps / totalSteps) * 100);
 
   useEffect(() => {
@@ -348,6 +184,7 @@ const Course = () => {
 
     if (currentModuleIndex < modules.length - 1) {
       const nextModule = modules[currentModuleIndex + 1];
+
       setCurrentModuleId(nextModule.id);
 
       const firstAvailableStep =
@@ -387,36 +224,148 @@ const Course = () => {
       };
     });
 
-    if (currentModuleIndex < updatedModules.length - 1) {
-      const nextModule = updatedModules[currentModuleIndex + 1];
-
-      if (
-        currentStepIndex === currentModule.steps.length - 1 &&
-        nextModule.status === "locked"
-      ) {
-        nextModule.status = "current";
-        if (nextModule.steps[0].status === "locked") {
-          nextModule.steps[0] = {
-            ...nextModule.steps[0],
-            status: "current",
-          };
-        }
-      }
-    }
-
-    setModules([...updatedModules]);
+    setModules(updatedModules);
     goNextStep();
   };
 
   const quizQuestion =
-    currentStep.type === "quiz" ? currentStep.questions[currentQuestionIndex] : null;
+    currentStep.type === "quiz"
+      ? currentStep.questions[currentQuestionIndex]
+      : null;
+
+  const currentQuizResult = useMemo(() => {
+    if (currentStep.type !== "quiz") return null;
+
+    const totalQuestions = currentStep.questions.length;
+
+    const correctAnswers = currentStep.questions.filter(
+      (question) => selectedAnswers[question.id] === question.correctIndex
+    ).length;
+
+    const answeredQuestions = currentStep.questions.filter(
+      (question) => selectedAnswers[question.id] !== undefined
+    ).length;
+
+    const score = Math.round((correctAnswers / totalQuestions) * 100);
+    const required = 80;
+
+    return {
+      passed: score >= required,
+      score,
+      required,
+      correctAnswers,
+      totalQuestions,
+      answeredQuestions,
+      allAnswered: answeredQuestions === totalQuestions,
+      timeSpent: "00:05:00",
+      attemptsUsed: attemptsUsed + 1,
+    };
+  }, [currentStep, selectedAnswers, attemptsUsed]);
+
+  const handleAnswerSelect = (questionId, optionIndex) => {
+    setSelectedAnswers((prev) => ({
+      ...prev,
+      [questionId]: optionIndex,
+    }));
+  };
+
+  const submitQuiz = () => {
+    if (!currentQuizResult || !currentQuizResult.allAnswered) return;
+
+    const nextAttemptsUsed = attemptsUsed + 1;
+
+    const updatedModules = modules.map((module) => {
+      if (module.id !== currentModule.id) return module;
+
+      const updatedSteps = module.steps.map((step, index) => {
+        if (step.id === currentStep.id) {
+          return {
+            ...step,
+            status: "completed",
+          };
+        }
+
+        if (index === currentStepIndex + 1 && step.type === "result") {
+          return {
+            ...step,
+            status: "current",
+            result: {
+              passed: currentQuizResult.passed,
+              score: currentQuizResult.score,
+              required: currentQuizResult.required,
+              timeSpent: currentQuizResult.timeSpent,
+              attemptsUsed: nextAttemptsUsed,
+            },
+          };
+        }
+
+        return step;
+      });
+
+      return {
+        ...module,
+        status: updatedSteps.every((step) => step.status === "completed")
+          ? "completed"
+          : "current",
+        steps: updatedSteps,
+      };
+    });
+
+    setAttemptsUsed(nextAttemptsUsed);
+    setModules(updatedModules);
+
+    const resultStep = currentModule.steps[currentStepIndex + 1];
+
+    if (resultStep?.type === "result") {
+      setCurrentStepId(resultStep.id);
+    }
+  };
+
+  const retryQuiz = () => {
+    setSelectedAnswers({});
+    setCurrentQuestionIndex(0);
+
+    const updatedModules = modules.map((module) => {
+      if (module.id !== currentModule.id) return module;
+
+      const updatedSteps = module.steps.map((step) => {
+        if (step.type === "quiz") {
+          return {
+            ...step,
+            status: "current",
+          };
+        }
+
+        if (step.type === "result") {
+          return {
+            ...step,
+            status: "locked",
+            result: {
+              ...step.result,
+              passed: false,
+              score: 0,
+              attemptsUsed,
+            },
+          };
+        }
+
+        return step;
+      });
+
+      return {
+        ...module,
+        status: "current",
+        steps: updatedSteps,
+      };
+    });
+
+    setModules(updatedModules);
+    setCurrentStepId("m1-step-3");
+  };
 
   const renderGradientProgress = (score) => (
     <div className={styles.resultProgressTrack}>
-      <div
-        className={styles.resultProgressFill}
-        style={{ width: `${score}%` }}
-      >
+      <div className={styles.resultProgressFill} style={{ width: `${score}%` }}>
         <div
           className={styles.resultProgressGradient}
           style={{
@@ -438,6 +387,7 @@ const Course = () => {
                   Module {currentModule.number} · Step {currentStep.number} of{" "}
                   {currentModule.steps.length}
                 </span>
+
                 <span className={styles.lessonDurationBadge}>
                   {currentStep.duration}
                 </span>
@@ -509,6 +459,7 @@ const Course = () => {
                   Module {currentModule.number} · Step {currentStep.number} of{" "}
                   {currentModule.steps.length}
                 </span>
+
                 <span className={styles.lessonDurationBadge}>
                   {currentStep.duration}
                 </span>
@@ -544,7 +495,13 @@ const Course = () => {
           <p className={styles.lessonDescription}>{currentStep.description}</p>
 
           <div className={styles.videoWrap}>
-            <video className={styles.video} controls src={currentStep.video} />
+            <iframe
+              className={styles.video}
+              src={currentStep.video}
+              title={currentStep.title}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
           </div>
 
           <div className={styles.bottomActions}>
@@ -578,6 +535,7 @@ const Course = () => {
                 <span className={styles.lessonCounter}>
                   Module {currentModule.number} · Quiz
                 </span>
+
                 <span className={styles.lessonDurationBadge}>
                   {currentStep.duration}
                 </span>
@@ -622,16 +580,25 @@ const Course = () => {
           <div className={styles.quizQuestionCard}>
             <div className={styles.quizQuestionHeader}>
               <span className={styles.quizQuestionCounter}>
-                Question {currentQuestionIndex + 1} of {currentStep.questions.length}
+                Question {currentQuestionIndex + 1} of{" "}
+                {currentStep.questions.length}
               </span>
             </div>
 
             <h3 className={styles.quizQuestionTitle}>{quizQuestion.question}</h3>
 
             <div className={styles.quizOptions}>
-              {quizQuestion.options.map((option) => (
+              {quizQuestion.options.map((option, optionIndex) => (
                 <label key={option} className={styles.quizOption}>
-                  <input type="radio" name={quizQuestion.id} />
+                  <input
+                    type="radio"
+                    name={quizQuestion.id}
+                    checked={selectedAnswers[quizQuestion.id] === optionIndex}
+                    onChange={() =>
+                      handleAnswerSelect(quizQuestion.id, optionIndex)
+                    }
+                  />
+
                   <span>{option}</span>
                 </label>
               ))}
@@ -666,7 +633,8 @@ const Course = () => {
               <button
                 type="button"
                 className={styles.primaryAction}
-                onClick={markCompleteAndNext}
+                onClick={submitQuiz}
+                disabled={!currentQuizResult?.allAnswered}
               >
                 Submit Quiz
               </button>
@@ -685,6 +653,7 @@ const Course = () => {
                 <span className={styles.lessonCounter}>
                   Module {currentModule.number} · Result
                 </span>
+
                 <span className={styles.lessonDurationBadge}>Summary</span>
               </div>
 
@@ -698,16 +667,25 @@ const Course = () => {
 
           <div className={styles.resultBox}>
             <div className={styles.resultTop}>
-              <div className={styles.resultIllustration}>📋</div>
+              <div
+                className={`${styles.resultIllustration} ${
+                  currentStep.result.passed
+                    ? styles.resultIllustrationPassed
+                    : styles.resultIllustrationFailed
+                }`}
+              >
+                {currentStep.result.passed ? "✅" : "📋"}
+              </div>
 
               <div className={styles.resultSummary}>
                 <h3 className={styles.resultTitle}>
-                  {currentStep.result.passed ? "You passed." : "You didn't pass."}
+                  {currentStep.result.passed
+                    ? "You passed."
+                    : "You didn't pass."}
                 </h3>
 
                 <p className={styles.resultText}>
-                  Review your result, score, and remaining attempts before moving
-                  to the next module.
+                  Review your result and score before moving to the next module.
                 </p>
 
                 <div className={styles.resultStats}>
@@ -727,8 +705,8 @@ const Course = () => {
                   </div>
 
                   <div className={styles.resultStat}>
-                    <span>Remaining attempts</span>
-                    <b>{currentStep.result.attemptsLeft}</b>
+                    <span>Attempts used</span>
+                    <b>{currentStep.result.attemptsUsed}</b>
                   </div>
                 </div>
               </div>
@@ -744,16 +722,31 @@ const Course = () => {
             </div>
 
             <div className={styles.bottomActions}>
-              <button type="button" className={styles.secondaryAction}>
-                Review Answers
-              </button>
               <button
                 type="button"
-                className={styles.primaryAction}
-                onClick={markCompleteAndNext}
+                className={styles.secondaryAction}
+                onClick={goPrevStep}
               >
-                Continue Course
+                Review Answers
               </button>
+
+              {currentStep.result.passed ? (
+                <button
+                  type="button"
+                  className={styles.primaryAction}
+                  onClick={markCompleteAndNext}
+                >
+                  Continue Course
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  className={styles.primaryAction}
+                  onClick={retryQuiz}
+                >
+                  Try Again
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -762,6 +755,10 @@ const Course = () => {
 
     return null;
   };
+
+  if (!isAllowedCourse) {
+    return <Navigate to="/404" replace />;
+  }
 
   return (
     <div className={styles.page}>
@@ -773,6 +770,7 @@ const Course = () => {
             <h1 className={styles.courseTitle}>
               {courseData.id} — {courseData.title}
             </h1>
+
             <p className={styles.courseSubtitle}>{courseData.subtitle}</p>
           </div>
         </div>
@@ -829,6 +827,7 @@ const Course = () => {
                       <span className={styles.moduleTitle}>
                         Module {module.number} · {module.title}
                       </span>
+
                       <span className={styles.moduleSub}>
                         {module.steps.length} steps
                       </span>
@@ -885,6 +884,7 @@ const Course = () => {
                         </span>
 
                         <span className={styles.lessonItemDot}>•</span>
+
                         <span className={styles.lessonItemDuration}>
                           {step.duration}
                         </span>

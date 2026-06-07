@@ -52,20 +52,35 @@
   box-shadow: 0 24px 60px rgba(4, 20, 46, 0.24);
 }
 
-.brandLogo {
-  width: 62px;
-  height: 62px;
-  border-radius: 20px;
+.logoWrapper {
+  width: 72px;
+  height: 72px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  background: rgba(255, 255, 255, 0.14);
-  color: #ffffff;
-  font-size: 30px;
+  border-radius: 18px;
 
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.logoWrapper:hover {
+  transform: translateY(-2px) scale(1.04);
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.brandLogo {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  display: block;
 }
 
 .brandOverline {
@@ -151,7 +166,7 @@
 
   display: flex;
   flex-direction: column;
-  gap: 22px; /* 👈 добавили */
+  gap: 22px;
 
   box-sizing: border-box;
 }
@@ -344,54 +359,6 @@
   text-align: center;
 }
 
-.brandLogo {
-  width: 80px;
-  height: 80px;
-
-  background-image: url("../../public/images/Muir_icon.svg"); /* <-- твой логотип */
-  background-size: cover;
-  background-position: center;
-
-  border-radius: 20px;
-
-  background-color: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(6px);
-
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-}
-
-.logoWrapper {
-  width: 72px;
-  height: 72px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 18px;
-
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(10px);
-
-  border: 1px solid rgba(255, 255, 255, 0.2);
-
-  cursor: pointer;
-  transition: 0.25s;
-}
-
-.logoWrapper:hover {
-  transform: translateY(-2px) scale(1.04);
-  background: rgba(255, 255, 255, 0.18);
-}
-
-/* ✅ ВАЖНО — img */
-.brandLogo {
-  width: 42px;
-  height: 42px;
-  object-fit: contain;
-  display: block;
-}
-
 .loginForm {
   display: flex;
   flex-direction: column;
@@ -421,6 +388,82 @@
   background: #ffffff;
   border-color: #3263bf;
   box-shadow: 0 0 0 4px rgba(50, 99, 191, 0.12);
+}
+
+.passwordField {
+  width: 100%;
+  height: 58px;
+  padding: 0 12px 0 18px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  border-radius: 18px;
+  border: 1px solid #d8e2f2;
+  background: #f8fbff;
+
+  box-sizing: border-box;
+  transition: 0.18s ease;
+}
+
+.passwordField:focus-within {
+  background: #ffffff;
+  border-color: #3263bf;
+  box-shadow: 0 0 0 4px rgba(50, 99, 191, 0.12);
+}
+
+.passwordField input {
+  width: 100%;
+  height: 100%;
+
+  border: none;
+  outline: none;
+  background: transparent;
+
+  color: #203d73;
+  font-size: 15px;
+  font-weight: 700;
+
+  min-width: 0;
+}
+
+.passwordField input::placeholder {
+  color: #8ca1c1;
+}
+
+.eyeButton {
+  width: 38px;
+  height: 38px;
+
+  border: none;
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: transparent;
+  cursor: pointer;
+
+  flex: 0 0 auto;
+
+  transition:
+    background 0.18s ease,
+    transform 0.18s ease;
+}
+
+.eyeButton:hover {
+  background: #e9f0fb;
+  transform: translateY(-1px);
+}
+
+.eyeButton img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  display: block;
+  opacity: 0.72;
 }
 
 .loginActions {
@@ -453,9 +496,64 @@
   background: #fff5f5;
 }
 
+.passwordField.inputError {
+  border-color: #e5484d;
+  background: #fff5f5;
+}
+
 .errorText {
   margin-top: 8px;
   font-size: 13px;
   font-weight: 600;
   color: #e5484d;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 920px) {
+  .loginPage {
+    padding: 22px;
+  }
+
+  .pageInner {
+    min-height: auto;
+    grid-template-columns: 1fr;
+  }
+
+  .brandPanel {
+    min-height: 430px;
+  }
+
+  .loginCard {
+    min-height: 560px;
+  }
+}
+
+@media (max-width: 520px) {
+  .loginPage {
+    padding: 14px;
+    align-items: flex-start;
+  }
+
+  .brandPanel {
+    padding: 24px;
+    border-radius: 24px;
+  }
+
+  .brandTitle {
+    font-size: 42px;
+  }
+
+  .brandStats {
+    grid-template-columns: 1fr;
+  }
+
+  .loginCard {
+    padding: 24px;
+    border-radius: 24px;
+  }
+
+  .loginActions {
+    grid-template-columns: 1fr;
+  }
 }

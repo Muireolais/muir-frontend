@@ -496,12 +496,23 @@
 
 .resultIllustration {
   border-radius: 20px;
-  background: linear-gradient(180deg, #fff1f1 0%, #ffe7e7 100%);
-  border: 1px solid #ffd4d4;
+  border: 1px solid;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 78px;
+}
+
+.resultIllustrationPassed {
+  background: linear-gradient(180deg, #ecfdf5 0%, #dcfce7 100%);
+  border-color: #bbf7d0;
+  color: #16a34a;
+}
+
+.resultIllustrationFailed {
+  background: linear-gradient(180deg, #fff1f1 0%, #ffe7e7 100%);
+  border-color: #ffd4d4;
+  color: #ef4444;
 }
 
 .resultSummary {
