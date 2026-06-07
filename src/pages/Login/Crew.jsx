@@ -1,12 +1,13 @@
 import { useState } from "react";
 import styles from "../../styles/Pages.module.css";
 import { useNavigate } from "react-router-dom";
-import workerLogin from "../../API/post/workerLogin";
+import login from "../../API/post/login";
 
 const Crew = () => {
   const navigate = useNavigate();
 
-  const [fullname, setFullname] = useState("");
+  const [loginType, setLoginType] = useState("crew");
+  const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -14,7 +15,11 @@ const Crew = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const token = await workerLogin({ username: fullname, password });
+    const token = await login({
+      loginType,
+      identifier,
+      password,
+    });
 
     if (token) {
       navigate("/profile");
@@ -28,6 +33,8 @@ const Crew = () => {
     setError(false);
   };
 
+  const inputClass = `${styles.input} ${error ? styles.incorrect : ""}`;
+
   return (
     <div className={styles.pageCenter}>
       <div className={styles.card}>
@@ -40,8 +47,8 @@ const Crew = () => {
 
           <input
             type="text"
-            value={fullname}
-            onChange={handleInputChange(setFullname)}
+            value={identifier}
+            onChange={handleInputChange(setIdentifier)}
             placeholder="Full name"
             className={`${styles.input} ${error ? styles.incorrect : ""}`}
           />

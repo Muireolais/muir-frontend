@@ -15,7 +15,6 @@
     top: 0;
     bottom: 0;  
     box-sizing: border-box;
-    color: var(--black-theme--text-color);
     font-family: "Inter", sans-serif;
 }
 

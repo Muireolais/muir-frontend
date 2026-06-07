@@ -1,5 +1,6 @@
 import styles from "../styles/CompanyPageVessels.module.css";
 import { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const vessels = [
   { name: "Titanic", id: 452653, status: "Active", performance: 65 },
@@ -44,6 +45,8 @@ const CompanyPageVessels = () => {
     if (value >= 20) return styles.performanceMedium;
     return styles.performanceLow;
   };
+
+  const navigate = useNavigate();
 
   return (
     <div className={styles.container}>
@@ -105,9 +108,13 @@ const CompanyPageVessels = () => {
           </div>
         </div>
 
-        <button className={styles.addVessel} type="button">
+        <button
+          onClick={() => navigate("./add")}
+          className={styles.addVessel}
+          type="button"
+        >
           <span className={styles.addIcon}>+</span>
-          <span style={{color: "#ffffff"}}>New Vessel</span>
+          <span style={{ color: "#ffffff" }}>New Vessel</span>
         </button>
       </div>
 
@@ -156,7 +163,7 @@ const CompanyPageVessels = () => {
 
                   <span
                     className={`${styles.performanceBadge} ${getPerformanceTone(
-                      v.performance
+                      v.performance,
                     )}`}
                   >
                     {v.performance}%

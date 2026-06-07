@@ -1,0 +1,90 @@
+.slider {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+
+.card {
+  min-height: 520px;
+  border-radius: 42px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.82);
+  position: relative;
+}
+
+.cardOverlay {
+  padding: 38px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.cardOverlay h3 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.cardOverlay p {
+  font-size: 16px;
+  line-height: 1.35;
+}
+
+.info {
+  margin-top: 22px;
+}
+
+.info h4 {
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+.info p {
+  font-size: 15px;
+}
+
+.arrow {
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  border: 1px solid #000;
+  color: #000;
+  border-radius: 50%;
+  background: transparent;
+  font-size: 32px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.errorInput {
+  border: 1px solid red;
+}
+
+.error {
+  color: red;
+}
+
+.selectedCard {
+  outline: 2px solid #ffffff;
+}
+
+.arrow:hover {
+  opacity: 0.7;
+}
+
+@media (max-width: 1000px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    min-height: 460px;
+  }
+}

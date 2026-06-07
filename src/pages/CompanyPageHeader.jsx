@@ -25,7 +25,7 @@ const CompanyPageHeader = () => {
           className={styles.profileButton}
           aria-label="Profile"
         >
-          <span className={styles.avatarCircle}>M</span>
+          <span className={styles.avatarCircle}>D</span>
 
           <span className={styles.profileMeta}>
             <span className={styles.profileName}>Dixstone</span>
