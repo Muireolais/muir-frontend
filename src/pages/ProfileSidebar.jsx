@@ -1,9 +1,12 @@
 import styles from "../styles/ProfileSidebar.module.css";
 import { useLocation, useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 const ProfileSidebar = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const token = localStorage.getItem("accessToken");
+  const role = token ? jwtDecode(token).role : null;
 
   const navItems = [
     {
@@ -36,12 +39,17 @@ const ProfileSidebar = () => {
       hint: "Account options",
       icon: "⚙️",
     },
-    {
-      label: "Crew Management",
-      path: "/profile/crew-management",
-      hint: "Manage assigned crew",
-      icon: "👥",
-    },
+
+    ...(role === "master"
+      ? [
+          {
+            label: "Crew Management",
+            path: "/profile/crew-management",
+            hint: "Manage assigned crew",
+            icon: "👥",
+          },
+        ]
+      : []),
   ];
 
   return (

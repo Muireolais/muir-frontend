@@ -1,6 +1,6 @@
 import Button from "../Button/Button";
 import styles from "./Search.module.css";
-import icon from "./Search_icon(1).svg";
+import icon from "./Search_icon.svg";
 
 const Search = ({ placeholder, onChange, value }) => {
   return (
@@ -13,7 +13,7 @@ const Search = ({ placeholder, onChange, value }) => {
         onChange={(e) => onChange(e.target.value)}
       />
       <Button borderedButton="true">
-        <img src={icon} alt="Search Icon" />
+        <img styles={"width: 100px"} src={icon} alt="Search Icon" />
       </Button>
     </div>
   );

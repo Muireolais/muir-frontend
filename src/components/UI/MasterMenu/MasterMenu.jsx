@@ -3,7 +3,7 @@ import styles from "./MasterMenu.module.css";
 import Search from "../Search/Search";
 import Button from "../Button/Button";
 import ModalWindow from "../ModalWindow/ModalWindow";
-import filter from "../Filter/filter(1).png";
+import filter from "../Filter/filter.png";
 import formatDate from "../../../functions/formatDate";
 
 const MasterMenu = ({

@@ -28,7 +28,7 @@
   height: 24px;
   width: 24px;
   background-color: transparent;
-  border: solid 2px #678CA6;
+  border: solid 2px #4a6e9a;
   border-radius: 5px;
 }
 
@@ -39,13 +39,13 @@
 }
 
 .checkBox:hover input ~ .checkmark {
-  background-color: rgba(159, 182, 192, 0.5);
+  background-color: #ecf3ff;
 }
 
 
 /* When the checkbox is checked, adds a blue background */
 .checkBox input:checked ~ .checkmark {
-  background-color: #678CA6;
+  background-color: #4a6e9a;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */

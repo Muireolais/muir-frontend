@@ -8,7 +8,6 @@ import HomePage from "./pages/Home";
 // import NewsPage from "./pages/NewsPage";
 // import ContactsPage from "./pages/ContactsPage";
 import NotFoundPage from "./pages/NotFound";
-import CaptainAdd from "./pages/MasterAdd";
 import CoursesPage from "./pages/Courses";
 
 // Импорт Login page from "./pages/Login";
@@ -17,6 +16,7 @@ import LoginLayout from "./layouts/LoginLayout";
 import Crew from "./pages/Login/Crew";
 import Company from "./pages/Login/Company";
 import MasterMain from "./pages/MasterMain";
+import MasterAdd from "./pages/MasterAdd";
 
 // Импорт layout (если есть)
 import RootLayout from "./layouts/RootLayout";
@@ -66,7 +66,7 @@ const router = createBrowserRouter([
     ),
     children: [
       { index: true, element: <MasterMain links={links} /> },
-      { path: "add", element: <CaptainAdd links={links} /> },
+      { path: "add", element: <MasterAdd links={links} /> },
     ],
   },
 
@@ -90,7 +90,7 @@ const router = createBrowserRouter([
   children: [
     { index: true, element: <ProfileMain /> },
     { path: "crew-management", element: <MasterMain links={links}/> },    
-    { path: "crew-management/add", element: <CaptainAdd /> },
+    { path: "crew-management/add", element: <MasterAdd links={links}/> },
     { path: "courses", element: <CoursesPage /> },
     { path: "courses/:courseSlug", element: <Course /> },
     ],

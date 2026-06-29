@@ -34,7 +34,7 @@ const MasterAdd = ({ links }) => {
   const [positionGroups, setPositionGroups] = useState([]);
 
   // List of available positions
-  const [positions, setPositions] = useState([{ id: "1", position: "Master" }]);
+  const [positions, setPositions] = useState([{ id: "1", position: "Master" },{ id: "2", position: "Master" },{ id: "3", position: "Master" }]);
 
   // Active position group index (used for switching tabs)
   const [active, setActive] = useState(0);
@@ -137,7 +137,7 @@ const MasterAdd = ({ links }) => {
       await addCrew(record);
     }
 
-    navigate(links.master);
+    navigate(-1);
   };
 
   // ==================== POSITION SELECTION ====================
