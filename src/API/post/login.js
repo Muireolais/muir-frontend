@@ -1,26 +1,29 @@
 import api from "../API";
 
-const login = async ({ loginType, formData }) => {
+const login = async ({ formData }) => {
   try {
     const payload =
-      loginType === "company"
+      formData.email && formData.code
         ? {
-          loginType: "company",
-          email: formData.email,
-          company_key: formData.code,
-        }
+            loginType: "company",
+            email: formData.email,
+            company_key: formData.code,
+          }
         : {
-          loginType,
-          username: formData.fullName,
-          password: formData.password,
-        };
+            loginType: "worker",
+            username: formData.fullName,
+            password: formData.password,
+          };
 
     const response = await api.post("/auth/login", payload);
 
     const token = response.data.accessToken;
     localStorage.setItem("accessToken", token);
 
-    return token;
+    return {
+      token,
+      role: response.data.role,
+    };
   } catch (error) {
     return null;
   }

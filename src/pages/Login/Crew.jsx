@@ -7,7 +7,7 @@ const Crew = () => {
   const navigate = useNavigate();
 
   const [loginType, setLoginType] = useState("crew");
-  const [identifier, setIdentifier] = useState("");
+  const [fullName, setFullName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -17,7 +17,7 @@ const Crew = () => {
 
     const token = await login({
       loginType,
-      identifier,
+      fullName,
       password,
     });
 
@@ -47,8 +47,8 @@ const Crew = () => {
 
           <input
             type="text"
-            value={identifier}
-            onChange={handleInputChange(setIdentifier)}
+            value={fullName}
+            onChange={handleInputChange(setFullName)}
             placeholder="Full name"
             className={`${styles.input} ${error ? styles.incorrect : ""}`}
           />

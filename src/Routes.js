@@ -89,7 +89,8 @@ const router = createBrowserRouter([
   ),
   children: [
     { index: true, element: <ProfileMain /> },
-    { path: "crew-management", element: <MasterMain /> },
+    { path: "crew-management", element: <MasterMain links={links}/> },    
+    { path: "crew-management/add", element: <CaptainAdd /> },
     { path: "courses", element: <CoursesPage /> },
     { path: "courses/:courseSlug", element: <Course /> },
     ],
