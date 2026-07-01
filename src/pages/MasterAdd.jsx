@@ -34,7 +34,17 @@ const MasterAdd = ({ links }) => {
   const [positionGroups, setPositionGroups] = useState([]);
 
   // List of available positions
-  const [positions, setPositions] = useState([{ id: "1", position: "Master" },{ id: "2", position: "Master" },{ id: "3", position: "Master" }]);
+  const [positions, setPositions] = useState([
+    { id: "1", position: "Master" },
+    { id: "2", position: "Master" },
+    { id: "3", position: "Master" },
+    { id: "4", position: "OD" },
+    { id: "5", position: "4th Engineer" },
+    { id: "6", position: "Deck Cadet" },
+    { id: "7", position: "4th Engineer" },
+  ]);
+
+  const [positionSearch, setPositionSearch] = useState("");
 
   // Active position group index (used for switching tabs)
   const [active, setActive] = useState(0);
@@ -93,7 +103,14 @@ const MasterAdd = ({ links }) => {
 
   // ==================== FORM SUBMIT ====================
 
-  const handleSubmit = async () => {
+  const handleSubmit = async () => {navigate("/profile/crew-management", {
+      state: {
+        notification: {
+          type: "success",
+          message: "Crew member(s) added successfully ✅",
+        },
+      },
+    });
     const newErrors = {};
     let hasError = false;
 
@@ -137,7 +154,7 @@ const MasterAdd = ({ links }) => {
       await addCrew(record);
     }
 
-    navigate(-1);
+    
   };
 
   // ==================== POSITION SELECTION ====================
@@ -168,6 +185,16 @@ const MasterAdd = ({ links }) => {
     setIsOpen(false);
   };
 
+  const filteredPositions = positions.filter((item) => {
+    const matchesSearch = item.position
+      .toLowerCase()
+      .includes(positionSearch.toLowerCase());
+
+    const matchesGroup = active === 0 || item.group_id === active;
+
+    return matchesSearch && matchesGroup;
+  });
+
   // ==================== DATA LOADING ====================
 
   useEffect(() => {
@@ -197,7 +224,11 @@ const MasterAdd = ({ links }) => {
         <div className={styles.position_header}>
           <h3 className={styles.modal_header}>Choose a position</h3>
           <div className={styles.position_header_right}>
-            <Search placeholder="Find position..." />
+            <Search
+              placeholder="Find position..."
+              value={positionSearch}
+              onChange={setPositionSearch}
+            />
             <Button onClick={() => setIsOpen(false)}>Close</Button>
           </div>
         </div>
@@ -213,7 +244,9 @@ const MasterAdd = ({ links }) => {
             {positionGroups.map((group) => (
               <div
                 key={group.id}
-                className={`${styles.position_group} ${active === group ? styles.selected_position_group : ""}`}
+                className={`${styles.position_group} ${
+                  active === group.id ? styles.selected_position_group : ""
+                }`}
                 onClick={() => setActive(group.id)}
               >
                 <span>{group.group_name}</span>
@@ -221,15 +254,21 @@ const MasterAdd = ({ links }) => {
             ))}
           </ul>
           <div className={styles.position_records}>
-            {positions.map((position) => (
-              <div
-                key={position.id}
-                className={styles.position_record}
-                onClick={() => choosePosition(position.id, position.position)}
-              >
-                <h4>{position.position}</h4>
+            {filteredPositions.length > 0 ? (
+              filteredPositions.map((position) => (
+                <div
+                  key={position.id}
+                  className={styles.position_record}
+                  onClick={() => choosePosition(position.id, position.position)}
+                >
+                  <h4>{position.position}</h4>
+                </div>
+              ))
+            ) : (
+              <div className={styles.no_positions}>
+                <h3>No positions found.</h3>
               </div>
-            ))}
+            )}
           </div>
         </div>
       </ModalWindow>
@@ -292,7 +331,11 @@ const MasterAdd = ({ links }) => {
                       type="date"
                       value={record.date_of_birth}
                       onChange={(e) => {
-                        handleChange(record.id, "date_of_birth", e.target.value);
+                        handleChange(
+                          record.id,
+                          "date_of_birth",
+                          e.target.value,
+                        );
                       }}
                       className={`
                         ${styles.date_input}

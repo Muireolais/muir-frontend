@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useLocation } from "react-router-dom";
 import styles from "../styles/MasterMain.module.css";
 
 import Table from "../components/UI/Table/Table";
@@ -13,6 +14,7 @@ import changeBoardStatus from "../API/patch/changeBoardStatus";
 
 const MasterMain = ({ links }) => {
   const itemsPerPage = 10;
+  const location = useLocation();
 
   const [page, setPage] = useState(() => {
     try {
@@ -76,7 +78,7 @@ const MasterMain = ({ links }) => {
         sign_on_date: "2026-02-12T00:00:00.000Z",
         sign_off_date: "2026-02-12T00:00:00.000Z",
         status: 1,
-      },  
+      },
     ],
     isLoading,
     isError,
@@ -145,7 +147,8 @@ const MasterMain = ({ links }) => {
   });
 
   const changeStatusMutation = useMutation({
-    mutationFn: ({ worker_id, date, status }) => changeBoardStatus(worker_id, date, status),
+    mutationFn: ({ worker_id, date, status }) =>
+      changeBoardStatus(worker_id, date, status),
 
     onSuccess: () => {
       queryClient.invalidateQueries(["crew"]);
@@ -160,6 +163,18 @@ const MasterMain = ({ links }) => {
       setTimeout(() => setNotification(null), 4000);
     },
   });
+  
+  useEffect(() => {
+    if (location.state?.notification) {console.log(location.state);
+      setNotification(location.state.notification);
+
+      setTimeout(() => {
+        setNotification(null);
+      }, 4000);
+
+      window.history.replaceState({}, document.title);
+    }
+  }, [location.state]);
 
   useEffect(() => {
     localStorage.setItem("crewPage", page);
@@ -208,6 +223,7 @@ const MasterMain = ({ links }) => {
 
   const renderContent = () => (
     <>
+      <Toast notification={notification} />
       {renderPageHeader()}
 
       <div className={styles.crew_list}>
@@ -255,8 +271,6 @@ const MasterMain = ({ links }) => {
 
   return (
     <main>
-      <Toast notification={notification} />
-
       <div className="container">
         <div className={styles.content}>{renderContent()}</div>
       </div>

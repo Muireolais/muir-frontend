@@ -217,6 +217,7 @@
 
 .position_modal_height {
   height: calc(100vh - 200px);
+  max-width: 1000px !important;
   display: flex;
   flex-direction: column;
   border-radius: 15px;
@@ -378,4 +379,13 @@ button.error_button {
   border-color: #7eaccc;
   box-shadow: 0 0 6px rgba(74, 144, 226, 0.4);
   outline: none;
+}
+
+.no_positions {
+  width: 800px;
+  height: calc(100vh - 300px);
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
